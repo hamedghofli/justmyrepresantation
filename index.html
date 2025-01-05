@@ -3,7 +3,7 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Introduction to ORM with Peewee</title>
+    <title>3D Slide Show</title>
     <style>
         body {
             font-family: Arial, sans-serif;
@@ -14,40 +14,55 @@
             justify-content: center;
             align-items: center;
             height: 100vh;
+            perspective: 1500px; /* Create a 3D perspective */
         }
 
         .container {
             width: 80%;
             height: 80%;
             max-width: 1000px;
-            overflow: hidden;
             position: relative;
             background-color: white;
             border-radius: 8px;
             box-shadow: 0 4px 10px rgba(0, 0, 0, 0.1);
+            transform-style: preserve-3d;
+            transform: rotateY(0deg);
+            transition: transform 1s ease;
         }
 
         .slides {
-            display: flex;
+            position: absolute;
+            top: 0;
+            left: 0;
             width: 100%;
             height: 100%;
+            display: flex;
             transition: transform 1s ease-in-out;
-            position: relative;
         }
 
         .slide {
             width: 100%;
             height: 100%;
-            opacity: 0;
-            transition: opacity 1s ease-in-out;
             display: flex;
             justify-content: center;
             align-items: center;
             padding: 20px;
+            background-color: #fff;
+            position: absolute;
+            backface-visibility: hidden; /* Hide backface during transitions */
+            box-sizing: border-box;
+        }
+
+        .slide:nth-child(odd) {
+            background-color: #f0f8ff;
         }
 
         .slide.active {
-            opacity: 1;
+            transform: rotateY(0deg);
+        }
+
+        .slide.inactive {
+            transform: rotateY(90deg); /* Rotate other slides out of view */
         }
 
         h1, h2, h3 {
@@ -132,21 +147,19 @@
         let currentSlideIndex = 0;
         const slides = document.querySelectorAll('.slide');
         const totalSlides = slides.length;
-        const slidesContainer = document.querySelector('.slides');
 
         // Function to move to the next or previous slide
         function moveSlide(direction) {
-            // Remove the 'active' class from the current slide
+            // Remove active class from the current slide
             slides[currentSlideIndex].classList.remove('active');
+            slides[currentSlideIndex].classList.add('inactive'); // Make current slide inactive
 
             // Update the current slide index
             currentSlideIndex = (currentSlideIndex + direction + totalSlides) % totalSlides;
 
-            // Add the 'active' class to the new slide
+            // Add active class to the new slide
+            slides[currentSlideIndex].classList.remove('inactive');
             slides[currentSlideIndex].classList.add('active');
-
-            // Move the slides container to show the current slide
-            slidesContainer.style.transform = `translateX(-${currentSlideIndex * 100}%)`;
         }
 
         // Initialize the first slide as active
