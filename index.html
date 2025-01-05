@@ -1,6 +1,10 @@
-Certainly! Below is an HTML and JavaScript-based motion presentation to teach ORM with Peewee. The code uses basic HTML, CSS for styling, and JavaScript for transitioning slides with some motion effects.
+You're right! Let's add motion effects to transition between slides, creating a more dynamic presentation.
 
-### **HTML, CSS, and JavaScript Presentation:**
+We'll use **CSS animations** combined with **JavaScript** to handle the transitions between slides. We'll make the slides smoothly fade in and out, and give them a "slide" motion effect, to create a more engaging experience.
+
+Here’s the updated code with **motion effects** for slide transitions:
+
+### Updated HTML, CSS, and JavaScript Code with Motion Effects:
 
 ```html
 <!DOCTYPE html>
@@ -15,37 +19,31 @@ Certainly! Below is an HTML and JavaScript-based motion presentation to teach OR
             margin: 0;
             padding: 0;
             background-color: #f4f4f9;
+            display: flex;
+            justify-content: center;
+            align-items: center;
+            height: 100vh;
         }
         .container {
-            width: 100%;
-            height: 100vh;
-            display: flex;
-            justify-content: center;
-            align-items: center;
-            flex-direction: column;
+            width: 80%;
+            height: 80%;
+            max-width: 1000px;
             overflow: hidden;
+            position: relative;
         }
         .slides {
-            position: relative;
-            width: 80%;
-            max-width: 1000px;
-            height: 80%;
-            background-color: #fff;
-            border-radius: 8px;
-            box-shadow: 0 4px 10px rgba(0, 0, 0, 0.1);
             display: flex;
-            justify-content: center;
-            align-items: center;
-            padding: 20px;
-            transition: transform 0.5s ease;
+            transition: transform 1s ease-in-out;
+            width: 100%;
+            height: 100%;
         }
         .slide {
             width: 100%;
             height: 100%;
             opacity: 0;
             visibility: hidden;
-            position: absolute;
-            transition: opacity 0.5s ease;
+            transition: opacity 1s ease-in-out;
+            position: relative;
         }
         .slide.active {
             opacity: 1;
@@ -53,6 +51,10 @@ Certainly! Below is an HTML and JavaScript-based motion presentation to teach OR
         }
         h1, h2, h3 {
             color: #333;
+            text-align: center;
+        }
+        ul {
+            padding-left: 20px;
         }
         .button {
             background-color: #4CAF50;
@@ -68,15 +70,20 @@ Certainly! Below is an HTML and JavaScript-based motion presentation to teach OR
             background-color: #45a049;
         }
         .navigation {
-            margin-top: 20px;
+            position: absolute;
+            top: 90%;
+            width: 100%;
             display: flex;
             justify-content: space-between;
-            width: 100%;
-            max-width: 1000px;
+            padding: 0 20px;
+        }
+        .navigation button {
+            width: 48%;
         }
     </style>
 </head>
 <body>
+
     <div class="container">
         <div class="slides">
             <!-- Slide 1: Title -->
@@ -210,6 +217,7 @@ user.save()</code></pre>
             </div>
         </div>
 
+        <!-- Navigation -->
         <div class="navigation">
             <button class="button" id="prevBtn" onclick="moveSlide(-1)">Previous</button>
             <button class="button" id="nextBtn" onclick="moveSlide(1)">Next</button>
@@ -218,7 +226,4 @@ user.save()</code></pre>
 
     <script>
         let currentSlideIndex = 0;
-        const slides = document.querySelectorAll('.slide');
-
-        function showSlide(index) {
-            if (index >= slides
+        const slides = document.query
