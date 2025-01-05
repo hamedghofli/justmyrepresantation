@@ -11,6 +11,7 @@
       background-color: #f4f4f9;
       margin: 0;
       padding: 0;
+      transition: background-color 0.5s ease;
     }
 
     header {
@@ -19,11 +20,14 @@
       text-align: center;
       padding: 20px;
       font-size: 2em;
+      transition: background-color 0.5s ease;
     }
 
     .container {
       width: 80%;
       margin: 0 auto;
+      opacity: 0;
+      transition: opacity 1s ease;
     }
 
     section {
@@ -37,6 +41,7 @@
     h2 {
       color: #333;
       font-size: 1.5em;
+      transition: color 0.5s ease;
     }
 
     ul {
@@ -92,7 +97,7 @@
     <section>
       <h2>ORM چیست؟</h2>
       <ul>
-        <li><strong>ORM</strong> (Object Relational Mapping) تکنیکی است که به شما امکان می‌دهد داده‌های ذخیره‌شده در پایگاه داده رابطه‌ای را به اشیای شی‌گرا تبدیل کنید.</li>
+        <li><strong>ORM</strong> (Object Relational Mapping) تکنیکی است که به شما امکان می‌دهد داده‌های ذخیره‌شده در پایگاه داده رابطه‌ای را به صورت شیء‌های برنامه‌نویسی مدیریت کنید.</li>
         <li>با استفاده از ORM می‌توانید از نوشتن کوئری‌های پیچیده SQL خودداری کنید و به راحتی با داده‌ها تعامل داشته باشید.</li>
       </ul>
     </section>
@@ -197,5 +202,15 @@ print(retrieved_user.email)
     <p>ارائه توسط شما</p>
   </footer>
 
+  <script>
+    document.addEventListener("DOMContentLoaded", function() {
+      document.body.style.backgroundColor = "#e0f7fa";
+      document.querySelector("header").style.backgroundColor = "#00796b";
+      document.querySelectorAll("h2").forEach(function(h2) {
+        h2.style.color = "#00796b";
+      });
+      document.querySelector(".container").style.opacity = 1;
+    });
+  </script>
 </body>
 </html>
