@@ -107,109 +107,8 @@
                 </ul>
             </div>
 
-            <!-- Slide 4: Introduction to Peewee -->
-            <div class="slide">
-                <h2>What is Peewee?</h2>
-                <p>Peewee is a small and expressive ORM for Python. It is designed for simplicity and works well with SQLite, MySQL, and PostgreSQL. Peewee provides an easy way to interact with databases and map database tables to Python classes.</p>
-                <p><strong>Key Features of Peewee:</strong></p>
-                <ul>
-                    <li>Simple to use</li>
-                    <li>Lightweight</li>
-                    <li>Supports advanced queries</li>
-                    <li>Built-in support for SQLite, MySQL, and PostgreSQL</li>
-                </ul>
-            </div>
+            <!-- More slides go here -->
 
-            <!-- Slide 5: Installing Peewee -->
-            <div class="slide">
-                <h2>Installing Peewee</h2>
-                <p>To install Peewee, use pip:</p>
-                <pre><code>pip install peewee</code></pre>
-                <p><strong>Note:</strong></p>
-                <ul>
-                    <li>For MySQL or PostgreSQL, additional libraries may be needed.</li>
-                    <li><code>pip install peewee[mysql]</code></li>
-                    <li><code>pip install peewee[postgres]</code></li>
-                </ul>
-            </div>
-
-            <!-- Slide 6: Setting Up a Database with Peewee -->
-            <div class="slide">
-                <h2>Setting Up a Database with Peewee</h2>
-                <pre><code>from peewee import *
-db = SqliteDatabase('my_database.db')</code></pre>
-                <p>Note: For MySQL/PostgreSQL, use <code>MySQLDatabase</code> or <code>PostgresqlDatabase</code> instead of <code>SqliteDatabase</code>.</p>
-            </div>
-
-            <!-- Slide 7: Defining Models -->
-            <div class="slide">
-                <h2>Defining Models (Tables)</h2>
-                <pre><code>class User(Model):
-    username = CharField(unique=True)
-    email = CharField()
-    password = CharField()
-
-    class Meta:
-        database = db  # Define the database connection</code></pre>
-            </div>
-
-            <!-- Slide 8: Performing CRUD Operations -->
-            <div class="slide">
-                <h2>Basic CRUD Operations</h2>
-                <p><strong>Create:</strong></p>
-                <pre><code>user = User.create(username='john_doe', email='john@example.com', password='securepass')</code></pre>
-                <p><strong>Read:</strong></p>
-                <pre><code>user = User.get(User.username == 'john_doe')</code></pre>
-                <p><strong>Update:</strong></p>
-                <pre><code>user.password = 'newpass'
-user.save()</code></pre>
-                <p><strong>Delete:</strong></p>
-                <pre><code>user.delete_instance()</code></pre>
-            </div>
-
-            <!-- Slide 9: Querying with Peewee -->
-            <div class="slide">
-                <h2>Querying with Peewee</h2>
-                <pre><code>users = User.select().where(User.email == 'john@example.com')</code></pre>
-                <pre><code>users = User.select().order_by(User.username)</code></pre>
-            </div>
-
-            <!-- Slide 10: Relationships Between Models -->
-            <div class="slide">
-                <h2>Defining Relationships Between Models</h2>
-                <pre><code>class Post(Model):
-    title = CharField()
-    content = TextField()
-    user = ForeignKeyField(User, backref='posts')
-    
-    class Meta:
-        database = db</code></pre>
-            </div>
-
-            <!-- Slide 11: Handling Transactions -->
-            <div class="slide">
-                <h2>Handling Transactions in Peewee</h2>
-                <pre><code>with db.atomic():
-    user = User.create(username='jane_doe', email='jane@example.com')
-    post = Post.create(title='My First Post', content='Hello World!', user=user)</code></pre>
-            </div>
-
-            <!-- Slide 12: Best Practices -->
-            <div class="slide">
-                <h2>Best Practices</h2>
-                <ul>
-                    <li>Keep queries efficient: Filter and paginate large queries.</li>
-                    <li>Use migrations to handle schema changes.</li>
-                    <li>Handle exceptions with database operations.</li>
-                </ul>
-            </div>
-
-            <!-- Slide 13: Conclusion -->
-            <div class="slide">
-                <h2>Summary & Conclusion</h2>
-                <p>ORM helps in abstracting complex SQL queries, making database interactions easier. Peewee is a great choice for lightweight and efficient database handling in Python. We have covered the basic CRUD operations, querying, relationships, and handling transactions.</p>
-                <p>Start integrating Peewee into your projects and explore more advanced topics in the official documentation!</p>
-            </div>
         </div>
 
         <!-- Navigation -->
@@ -229,6 +128,10 @@ user.save()</code></pre>
             currentSlideIndex = (currentSlideIndex + direction + totalSlides) % totalSlides;
             slides[currentSlideIndex].classList.add('active');
         }
+
+        window.onload = function() {
+            slides[currentSlideIndex].classList.add('active');
+        };
     </script>
 
 </body>
