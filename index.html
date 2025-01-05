@@ -1,216 +1,224 @@
+Certainly! Below is an HTML and JavaScript-based motion presentation to teach ORM with Peewee. The code uses basic HTML, CSS for styling, and JavaScript for transitioning slides with some motion effects.
+
+### **HTML, CSS, and JavaScript Presentation:**
+
+```html
 <!DOCTYPE html>
-<html lang="fa">
+<html lang="en">
 <head>
-  <meta charset="UTF-8">
-  <meta name="viewport" content="width=device-width, initial-scale=1.0">
-  <title>معرفی کتابخانه ORM Peewee</title>
-  <style>
-    body {
-      font-family: Arial, sans-serif;
-      direction: rtl;
-      background-color: #f4f4f9;
-      margin: 0;
-      padding: 0;
-      transition: background-color 0.5s ease;
-    }
-
-    header {
-      background-color: #4CAF50;
-      color: white;
-      text-align: center;
-      padding: 20px;
-      font-size: 2em;
-      transition: background-color 0.5s ease;
-    }
-
-    .container {
-      width: 80%;
-      margin: 0 auto;
-      opacity: 0;
-      transition: opacity 1s ease;
-    }
-
-    section {
-      margin: 40px 0;
-      background-color: white;
-      padding: 20px;
-      border-radius: 10px;
-      box-shadow: 0 4px 8px rgba(0, 0, 0, 0.1);
-    }
-
-    h2 {
-      color: #333;
-      font-size: 1.5em;
-      transition: color 0.5s ease;
-    }
-
-    ul {
-      font-size: 1.1em;
-      line-height: 1.6em;
-    }
-
-    ul li {
-      margin-bottom: 10px;
-    }
-
-    code {
-      background-color: #f1f1f1;
-      padding: 5px 10px;
-      border-radius: 5px;
-      font-family: "Courier New", monospace;
-    }
-
-    .highlight {
-      background-color: #f0f0f0;
-      padding: 10px;
-      border-left: 4px solid #4CAF50;
-      margin-bottom: 20px;
-    }
-
-    footer {
-      background-color: #333;
-      color: white;
-      text-align: center;
-      padding: 10px;
-      position: fixed;
-      bottom: 0;
-      width: 100%;
-    }
-
-    /* Responsive */
-    @media (max-width: 768px) {
-      .container {
-        width: 90%;
-      }
-    }
-  </style>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Introduction to ORM with Peewee</title>
+    <style>
+        body {
+            font-family: Arial, sans-serif;
+            margin: 0;
+            padding: 0;
+            background-color: #f4f4f9;
+        }
+        .container {
+            width: 100%;
+            height: 100vh;
+            display: flex;
+            justify-content: center;
+            align-items: center;
+            flex-direction: column;
+            overflow: hidden;
+        }
+        .slides {
+            position: relative;
+            width: 80%;
+            max-width: 1000px;
+            height: 80%;
+            background-color: #fff;
+            border-radius: 8px;
+            box-shadow: 0 4px 10px rgba(0, 0, 0, 0.1);
+            display: flex;
+            justify-content: center;
+            align-items: center;
+            padding: 20px;
+            transition: transform 0.5s ease;
+        }
+        .slide {
+            width: 100%;
+            height: 100%;
+            opacity: 0;
+            visibility: hidden;
+            position: absolute;
+            transition: opacity 0.5s ease;
+        }
+        .slide.active {
+            opacity: 1;
+            visibility: visible;
+        }
+        h1, h2, h3 {
+            color: #333;
+        }
+        .button {
+            background-color: #4CAF50;
+            color: white;
+            border: none;
+            padding: 10px 20px;
+            font-size: 16px;
+            cursor: pointer;
+            border-radius: 5px;
+            transition: background-color 0.3s;
+        }
+        .button:hover {
+            background-color: #45a049;
+        }
+        .navigation {
+            margin-top: 20px;
+            display: flex;
+            justify-content: space-between;
+            width: 100%;
+            max-width: 1000px;
+        }
+    </style>
 </head>
 <body>
+    <div class="container">
+        <div class="slides">
+            <!-- Slide 1: Title -->
+            <div class="slide active">
+                <h1>Introduction to ORM with Peewee</h1>
+                <h2>Learn how to use Peewee to interact with relational databases</h2>
+                <p>Presented by [Your Name]</p>
+                <p>Date: [Date]</p>
+            </div>
 
-  <header>
-    معرفی کتابخانه ORM Peewee
-  </header>
+            <!-- Slide 2: What is ORM? -->
+            <div class="slide">
+                <h2>What is ORM?</h2>
+                <p>ORM is a technique that allows developers to interact with a relational database using object-oriented programming (OOP). Instead of writing raw SQL queries, you use objects that represent tables in the database. The ORM handles the translation between the Python objects and the database records.</p>
+            </div>
 
-  <div class="container">
+            <!-- Slide 3: Why Use ORM? -->
+            <div class="slide">
+                <h2>Why Use ORM?</h2>
+                <ul>
+                    <li>Simplicity: Reduces the need to write complex SQL queries.</li>
+                    <li>Security: ORM libraries protect against SQL injection attacks.</li>
+                    <li>Maintainability: Code is easier to maintain and refactor.</li>
+                    <li>Portability: Some ORMs can work across different databases (e.g., PostgreSQL, SQLite, MySQL).</li>
+                    <li>Reduced Boilerplate: Automatically handles the CRUD operations (Create, Read, Update, Delete).</li>
+                </ul>
+            </div>
 
-    <!-- اسلاید 2: مقدمه -->
-    <section>
-      <h2>ORM چیست؟</h2>
-      <ul>
-        <li><strong>ORM</strong> (Object Relational Mapping) تکنیکی است که به شما امکان می‌دهد داده‌های ذخیره‌شده در پایگاه داده رابطه‌ای را به صورت شیء‌های برنامه‌نویسی مدیریت کنید.</li>
-        <li>با استفاده از ORM می‌توانید از نوشتن کوئری‌های پیچیده SQL خودداری کنید و به راحتی با داده‌ها تعامل داشته باشید.</li>
-      </ul>
-    </section>
+            <!-- Slide 4: Introduction to Peewee -->
+            <div class="slide">
+                <h2>What is Peewee?</h2>
+                <p>Peewee is a small and expressive ORM for Python. It is designed for simplicity and works well with SQLite, MySQL, and PostgreSQL. Peewee provides an easy way to interact with databases and map database tables to Python classes.</p>
+                <p><strong>Key Features of Peewee:</strong></p>
+                <ul>
+                    <li>Simple to use</li>
+                    <li>Lightweight</li>
+                    <li>Supports advanced queries</li>
+                    <li>Built-in support for SQLite, MySQL, and PostgreSQL</li>
+                </ul>
+            </div>
 
-    <!-- اسلاید 3: معرفی Peewee -->
-    <section>
-      <h2>Peewee چیست؟</h2>
-      <ul>
-        <li><strong>Peewee</strong> یک کتابخانه ORM ساده و سبک برای Python است که کار با پایگاه داده‌های مختلف را راحت می‌کند.</li>
-        <li>از پایگاه‌های داده‌ای مانند SQLite، PostgreSQL و MySQL پشتیبانی می‌کند.</li>
-        <li>این کتابخانه برای پروژه‌های کوچک و متوسط بسیار مناسب است.</li>
-      </ul>
-    </section>
+            <!-- Slide 5: Installing Peewee -->
+            <div class="slide">
+                <h2>Installing Peewee</h2>
+                <p>To install Peewee, use pip:</p>
+                <pre><code>pip install peewee</code></pre>
+                <p><strong>Note:</strong></p>
+                <ul>
+                    <li>For MySQL or PostgreSQL, additional libraries may be needed.</li>
+                    <li><code>pip install peewee[mysql]</code></li>
+                    <li><code>pip install peewee[postgres]</code></li>
+                </ul>
+            </div>
 
-    <!-- اسلاید 4: ویژگی‌های اصلی -->
-    <section>
-      <h2>ویژگی‌های اصلی Peewee</h2>
-      <ul>
-        <li><strong>سادگی:</strong> استفاده از Peewee بسیار آسان و کد شما خوانا است.</li>
-        <li><strong>پشتیبانی از چندین پایگاه داده:</strong> می‌توانید از SQLite، PostgreSQL و MySQL استفاده کنید.</li>
-        <li><strong>مهاجرت (Migrations):</strong> امکان مدیریت تغییرات ساختار پایگاه داده وجود دارد.</li>
-        <li><strong>دستورات پرس‌وجو:</strong> پشتیبانی از ایجاد و اجرای پرس‌وجوهای SQL به شیوه‌ای شی‌گرا.</li>
-      </ul>
-    </section>
+            <!-- Slide 6: Setting Up a Database with Peewee -->
+            <div class="slide">
+                <h2>Setting Up a Database with Peewee</h2>
+                <pre><code>from peewee import *
+db = SqliteDatabase('my_database.db')</code></pre>
+                <p>Note: For MySQL/PostgreSQL, use <code>MySQLDatabase</code> or <code>PostgresqlDatabase</code> instead of <code>SqliteDatabase</code>.</p>
+            </div>
 
-    <!-- اسلاید 5: نصب Peewee -->
-    <section>
-      <h2>نصب Peewee</h2>
-      <div class="highlight">
-        <p>برای نصب Peewee، کافی است از دستور زیر استفاده کنید:</p>
-        <code>pip install peewee</code>
-      </div>
-    </section>
-
-    <!-- اسلاید 6: مثال ساده -->
-    <section>
-      <h2>مثال ساده</h2>
-      <p>در اینجا یک مثال ساده برای ایجاد یک مدل و ذخیره داده در پایگاه داده آورده شده است:</p>
-      <div class="highlight">
-        <pre><code>
-from peewee import *
-
-# اتصال به پایگاه داده
-db = SqliteDatabase('my_database.db')
-
-# تعریف مدل
-class User(Model):
-    username = CharField()
+            <!-- Slide 7: Defining Models -->
+            <div class="slide">
+                <h2>Defining Models (Tables)</h2>
+                <pre><code>class User(Model):
+    username = CharField(unique=True)
     email = CharField()
+    password = CharField()
 
     class Meta:
-        database = db  # استفاده از پایگاه داده تعریف شده
+        database = db  # Define the database connection</code></pre>
+            </div>
 
-# ایجاد جدول
-db.connect()
-db.create_tables([User])
+            <!-- Slide 8: Performing CRUD Operations -->
+            <div class="slide">
+                <h2>Basic CRUD Operations</h2>
+                <p><strong>Create:</strong></p>
+                <pre><code>user = User.create(username='john_doe', email='john@example.com', password='securepass')</code></pre>
+                <p><strong>Read:</strong></p>
+                <pre><code>user = User.get(User.username == 'john_doe')</code></pre>
+                <p><strong>Update:</strong></p>
+                <pre><code>user.password = 'newpass'
+user.save()</code></pre>
+                <p><strong>Delete:</strong></p>
+                <pre><code>user.delete_instance()</code></pre>
+            </div>
 
-# اضافه کردن داده
-user = User.create(username='johndoe', email='johndoe@example.com')
+            <!-- Slide 9: Querying with Peewee -->
+            <div class="slide">
+                <h2>Querying with Peewee</h2>
+                <pre><code>users = User.select().where(User.email == 'john@example.com')</code></pre>
+                <pre><code>users = User.select().order_by(User.username)</code></pre>
+            </div>
 
-# بازیابی داده
-retrieved_user = User.get(User.username == 'johndoe')
-print(retrieved_user.email)
-        </code></pre>
-      </div>
-    </section>
+            <!-- Slide 10: Relationships Between Models -->
+            <div class="slide">
+                <h2>Defining Relationships Between Models</h2>
+                <pre><code>class Post(Model):
+    title = CharField()
+    content = TextField()
+    user = ForeignKeyField(User, backref='posts')
+    
+    class Meta:
+        database = db</code></pre>
+            </div>
 
-    <!-- اسلاید 7: مزایا و معایب -->
-    <section>
-      <h2>مزایا و معایب</h2>
-      <h3>مزایا:</h3>
-      <ul>
-        <li>کتابخانه سبک و سریع است.</li>
-        <li>ساده و آسان برای یادگیری.</li>
-        <li>امکان مدیریت داده‌ها به‌راحتی وجود دارد.</li>
-      </ul>
-      <h3>معایب:</h3>
-      <ul>
-        <li>ممکن است برای پروژه‌های بسیار بزرگ مناسب نباشد.</li>
-        <li>ویژگی‌های کمتری نسبت به کتابخانه‌های دیگر ORM مانند SQLAlchemy دارد.</li>
-      </ul>
-    </section>
+            <!-- Slide 11: Handling Transactions -->
+            <div class="slide">
+                <h2>Handling Transactions in Peewee</h2>
+                <pre><code>with db.atomic():
+    user = User.create(username='jane_doe', email='jane@example.com')
+    post = Post.create(title='My First Post', content='Hello World!', user=user)</code></pre>
+            </div>
 
-    <!-- اسلاید 8: نتیجه‌گیری -->
-    <section>
-      <h2>نتیجه‌گیری</h2>
-      <ul>
-        <li>Peewee یک ORM ساده و سبک برای پروژه‌های کوچک و متوسط است.</li>
-        <li>برای پروژه‌های پیچیده‌تر ممکن است نیاز به استفاده از کتابخانه‌های دیگر مانند SQLAlchemy داشته باشید.</li>
-      </ul>
-    </section>
+            <!-- Slide 12: Best Practices -->
+            <div class="slide">
+                <h2>Best Practices</h2>
+                <ul>
+                    <li>Keep queries efficient: Filter and paginate large queries.</li>
+                    <li>Use migrations to handle schema changes.</li>
+                    <li>Handle exceptions with database operations.</li>
+                </ul>
+            </div>
 
-    <!-- اسلاید 9: سوالات -->
-    <section>
-      <h2>سوالات؟</h2>
-      <p>در این بخش می‌توانید به سوالات احتمالی مخاطبان پاسخ دهید.</p>
-    </section>
+            <!-- Slide 13: Conclusion -->
+            <div class="slide">
+                <h2>Summary & Conclusion</h2>
+                <p>ORM helps in abstracting complex SQL queries, making database interactions easier. Peewee is a great choice for lightweight and efficient database handling in Python. We have covered the basic CRUD operations, querying, relationships, and handling transactions.</p>
+                <p>Start integrating Peewee into your projects and explore more advanced topics in the official documentation!</p>
+            </div>
+        </div>
 
-  </div>
+        <div class="navigation">
+            <button class="button" id="prevBtn" onclick="moveSlide(-1)">Previous</button>
+            <button class="button" id="nextBtn" onclick="moveSlide(1)">Next</button>
+        </div>
+    </div>
 
-  <footer>
-    <p>ارائه توسط شما</p>
-  </footer>
+    <script>
+        let currentSlideIndex = 0;
+        const slides = document.querySelectorAll('.slide');
 
-  <script>
-    document.addEventListener("DOMContentLoaded", function() {
-      document.body.style.backgroundColor = "#e0f7fa";
-      document.querySelector("header").style.backgroundColor = "#00796b";
-      document.querySelectorAll("h2").forEach(function(h2) {
-        h2.style.color = "#00796b";
-      });
-      document.querySelector(".container").style.opacity = 1;
-    });
-  </script>
-</body>
-</html>
+        function showSlide(index) {
+            if (index >= slides
