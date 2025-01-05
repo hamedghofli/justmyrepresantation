@@ -1,0 +1,19 @@
+import yaml
+import psycopg2
+class qu:
+    def __init__(self):
+        self.config=None
+        self.con=None
+        self.cur=None
+        with open('config/db.yaml') as f:
+            self.config=yaml.safe_load(f.read())
+    def connect(self):
+        self.con = psycopg2.connect(
+            host=self.config['host'],
+            user=self.config['username'],
+            password=self.config['password'],
+            port=self.config['port'],
+            database=self.config['database']  # fixed typo here
+        )
+        self.cur = self.con.cursor()
+
