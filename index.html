@@ -1,45 +1,104 @@
-
 <!DOCTYPE html>
-<html lang="en">
+<html>
 <head>
-    <meta charset="UTF-8">
-    <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>3D Slide Show</title>
-    <link rel="stylesheet" href="styles.css">
+<style>
+body {
+  perspective: 1000px; /* Adjust for 3D depth */
+}
+
+.container {
+  position: relative;
+  width: 400px; /* Adjust width as needed */
+  height: 300px; /* Adjust height as needed */
+  margin: 50px auto;
+  transform-style: preserve-3d; /* Enable 3D transformations */
+}
+
+.slide {
+  position: absolute;
+  width: 100%;
+  height: 100%;
+  backface-visibility: hidden; /* Hide back of slides */
+  transition: transform 1s ease-in-out; /* Smooth transitions */
+}
+
+.slide:nth-child(1) {
+  transform: rotateY(0deg);
+}
+
+.slide:nth-child(2) {
+  transform: rotateY(-180deg);
+}
+
+.slide:nth-child(3) {
+  transform: rotateY(-360deg);
+}
+
+/* Add more slides and rotations as needed */
+
+.prev, .next {
+  position: absolute;
+  top: 50%;
+  transform: translateY(-50%);
+  padding: 10px 20px;
+  background-color: rgba(0, 0, 0, 0.5);
+  color: white;
+  border: none;
+  cursor: pointer;
+}
+
+.prev {
+  left: 20px;
+}
+
+.next {
+  right: 20px;
+}
+</style>
 </head>
 <body>
-    <div class="container">
-        <div class="slides">
-            <!-- Slide 1: Title -->
-            <div class="slide active">
-                <h1>Introduction to ORM with Peewee</h1>
-                <h2>Learn how to use Peewee to interact with relational databases</h2>
-                <p>Presented by [Your Name]</p>
-                <p>Date: [Date]</p>
-            </div>
-            <!-- Slide 2: What is ORM? -->
-            <div class="slide">
-                <h2>What is ORM?</h2>
-                <p>ORM is a technique that allows developers to interact with a relational database using object-oriented programming (OOP). Instead of writing raw SQL queries, you use objects that represent tables in the database. The ORM handles the translation between the Python objects and the database records.</p>
-            </div>
-            <!-- Slide 3: Why Use ORM? -->
-            <div class="slide">
-                <h2>Why Use ORM?</h2>
-                <ul>
-                    <li>Simplicity: Reduces the need to write complex SQL queries.</li>
-                    <li>Security: ORM libraries protect against SQL injection attacks.</li>
-                    <li>Maintainability: Code is easier to maintain and refactor.</li>
-                    <li>Portability: Some ORMs can work across different databases (e.g., PostgreSQL, SQLite, MySQL).</li>
-                    <li>Reduced Boilerplate: Automatically handles the CRUD operations (Create, Read, Update, Delete).</li>
-                </ul>
-            </div>
-        </div>
-        <!-- Navigation -->
-        <div class="navigation">
-            <button class="button" id="prevBtn" onclick="moveSlide(-1)">Previous</button>
-            <button class="button" id="nextBtn" onclick="moveSlide(1)">Next</button>
-        </div>
-    </div>
-    <script src="scripts.js"></script>
+
+<div class="container">
+  <div class="slide">
+    <h2>Slide 1</h2>
+    <p>Content for Slide 1</p>
+  </div>
+  <div class="slide">
+    <h2>Slide 2</h2>
+    <p>Content for Slide 2</p>
+  </div>
+  <div class="slide">
+    <h2>Slide 3</h2>
+    <p>Content for Slide 3</p>
+  </div>
+</div>
+
+<button class="prev">Previous</button>
+<button class="next">Next</button>
+
+<script>
+const container = document.querySelector('.container');
+const slides = document.querySelectorAll('.slide');
+const prevBtn = document.querySelector('.prev');
+const nextBtn = document.querySelector('.next');
+let currentSlide = 0;
+
+nextBtn.addEventListener('click', () => {
+  currentSlide = (currentSlide + 1) % slides.length;
+  updateSlides();
+});
+
+prevBtn.addEventListener('click', () => {
+  currentSlide = (currentSlide - 1 + slides.length) % slides.length;
+  updateSlides();
+});
+
+function updateSlides() {
+  slides.forEach((slide, index) => {
+    slide.style.transform = `rotateY(${index - currentSlide} * 180deg)`;
+  });
+}
+</script>
+
 </body>
 </html>
