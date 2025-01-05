@@ -107,8 +107,7 @@
                 </ul>
             </div>
 
-            <!-- More slides go here -->
-
+            <!-- Additional slides can be added here -->
         </div>
 
         <!-- Navigation -->
@@ -122,13 +121,23 @@
         let currentSlideIndex = 0;
         const slides = document.querySelectorAll('.slide');
         const totalSlides = slides.length;
+        const slidesContainer = document.querySelector('.slides');
 
         function moveSlide(direction) {
+            // Remove active class from current slide
             slides[currentSlideIndex].classList.remove('active');
+
+            // Update slide index based on direction
             currentSlideIndex = (currentSlideIndex + direction + totalSlides) % totalSlides;
+
+            // Add active class to the new slide
             slides[currentSlideIndex].classList.add('active');
+
+            // Move the slides container to show the next slide
+            slidesContainer.style.transform = `translateX(-${currentSlideIndex * 100}%)`;
         }
 
+        // Initialize the first slide as active when the page loads
         window.onload = function() {
             slides[currentSlideIndex].classList.add('active');
         };
