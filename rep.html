@@ -1,0 +1,201 @@
+<!DOCTYPE html>
+<html lang="fa">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>معرفی کتابخانه ORM Peewee</title>
+  <style>
+    body {
+      font-family: Arial, sans-serif;
+      direction: rtl;
+      background-color: #f4f4f9;
+      margin: 0;
+      padding: 0;
+    }
+
+    header {
+      background-color: #4CAF50;
+      color: white;
+      text-align: center;
+      padding: 20px;
+      font-size: 2em;
+    }
+
+    .container {
+      width: 80%;
+      margin: 0 auto;
+    }
+
+    section {
+      margin: 40px 0;
+      background-color: white;
+      padding: 20px;
+      border-radius: 10px;
+      box-shadow: 0 4px 8px rgba(0, 0, 0, 0.1);
+    }
+
+    h2 {
+      color: #333;
+      font-size: 1.5em;
+    }
+
+    ul {
+      font-size: 1.1em;
+      line-height: 1.6em;
+    }
+
+    ul li {
+      margin-bottom: 10px;
+    }
+
+    code {
+      background-color: #f1f1f1;
+      padding: 5px 10px;
+      border-radius: 5px;
+      font-family: "Courier New", monospace;
+    }
+
+    .highlight {
+      background-color: #f0f0f0;
+      padding: 10px;
+      border-left: 4px solid #4CAF50;
+      margin-bottom: 20px;
+    }
+
+    footer {
+      background-color: #333;
+      color: white;
+      text-align: center;
+      padding: 10px;
+      position: fixed;
+      bottom: 0;
+      width: 100%;
+    }
+
+    /* Responsive */
+    @media (max-width: 768px) {
+      .container {
+        width: 90%;
+      }
+    }
+  </style>
+</head>
+<body>
+
+  <header>
+    معرفی کتابخانه ORM Peewee
+  </header>
+
+  <div class="container">
+
+    <!-- اسلاید 2: مقدمه -->
+    <section>
+      <h2>ORM چیست؟</h2>
+      <ul>
+        <li><strong>ORM</strong> (Object Relational Mapping) تکنیکی است که به شما امکان می‌دهد داده‌های ذخیره‌شده در پایگاه داده رابطه‌ای را به اشیای شی‌گرا تبدیل کنید.</li>
+        <li>با استفاده از ORM می‌توانید از نوشتن کوئری‌های پیچیده SQL خودداری کنید و به راحتی با داده‌ها تعامل داشته باشید.</li>
+      </ul>
+    </section>
+
+    <!-- اسلاید 3: معرفی Peewee -->
+    <section>
+      <h2>Peewee چیست؟</h2>
+      <ul>
+        <li><strong>Peewee</strong> یک کتابخانه ORM ساده و سبک برای Python است که کار با پایگاه داده‌های مختلف را راحت می‌کند.</li>
+        <li>از پایگاه‌های داده‌ای مانند SQLite، PostgreSQL و MySQL پشتیبانی می‌کند.</li>
+        <li>این کتابخانه برای پروژه‌های کوچک و متوسط بسیار مناسب است.</li>
+      </ul>
+    </section>
+
+    <!-- اسلاید 4: ویژگی‌های اصلی -->
+    <section>
+      <h2>ویژگی‌های اصلی Peewee</h2>
+      <ul>
+        <li><strong>سادگی:</strong> استفاده از Peewee بسیار آسان و کد شما خوانا است.</li>
+        <li><strong>پشتیبانی از چندین پایگاه داده:</strong> می‌توانید از SQLite، PostgreSQL و MySQL استفاده کنید.</li>
+        <li><strong>مهاجرت (Migrations):</strong> امکان مدیریت تغییرات ساختار پایگاه داده وجود دارد.</li>
+        <li><strong>دستورات پرس‌وجو:</strong> پشتیبانی از ایجاد و اجرای پرس‌وجوهای SQL به شیوه‌ای شی‌گرا.</li>
+      </ul>
+    </section>
+
+    <!-- اسلاید 5: نصب Peewee -->
+    <section>
+      <h2>نصب Peewee</h2>
+      <div class="highlight">
+        <p>برای نصب Peewee، کافی است از دستور زیر استفاده کنید:</p>
+        <code>pip install peewee</code>
+      </div>
+    </section>
+
+    <!-- اسلاید 6: مثال ساده -->
+    <section>
+      <h2>مثال ساده</h2>
+      <p>در اینجا یک مثال ساده برای ایجاد یک مدل و ذخیره داده در پایگاه داده آورده شده است:</p>
+      <div class="highlight">
+        <pre><code>
+from peewee import *
+
+# اتصال به پایگاه داده
+db = SqliteDatabase('my_database.db')
+
+# تعریف مدل
+class User(Model):
+    username = CharField()
+    email = CharField()
+
+    class Meta:
+        database = db  # استفاده از پایگاه داده تعریف شده
+
+# ایجاد جدول
+db.connect()
+db.create_tables([User])
+
+# اضافه کردن داده
+user = User.create(username='johndoe', email='johndoe@example.com')
+
+# بازیابی داده
+retrieved_user = User.get(User.username == 'johndoe')
+print(retrieved_user.email)
+        </code></pre>
+      </div>
+    </section>
+
+    <!-- اسلاید 7: مزایا و معایب -->
+    <section>
+      <h2>مزایا و معایب</h2>
+      <h3>مزایا:</h3>
+      <ul>
+        <li>کتابخانه سبک و سریع است.</li>
+        <li>ساده و آسان برای یادگیری.</li>
+        <li>امکان مدیریت داده‌ها به‌راحتی وجود دارد.</li>
+      </ul>
+      <h3>معایب:</h3>
+      <ul>
+        <li>ممکن است برای پروژه‌های بسیار بزرگ مناسب نباشد.</li>
+        <li>ویژگی‌های کمتری نسبت به کتابخانه‌های دیگر ORM مانند SQLAlchemy دارد.</li>
+      </ul>
+    </section>
+
+    <!-- اسلاید 8: نتیجه‌گیری -->
+    <section>
+      <h2>نتیجه‌گیری</h2>
+      <ul>
+        <li>Peewee یک ORM ساده و سبک برای پروژه‌های کوچک و متوسط است.</li>
+        <li>برای پروژه‌های پیچیده‌تر ممکن است نیاز به استفاده از کتابخانه‌های دیگر مانند SQLAlchemy داشته باشید.</li>
+      </ul>
+    </section>
+
+    <!-- اسلاید 9: سوالات -->
+    <section>
+      <h2>سوالات؟</h2>
+      <p>در این بخش می‌توانید به سوالات احتمالی مخاطبان پاسخ دهید.</p>
+    </section>
+
+  </div>
+
+  <footer>
+    <p>ارائه توسط شما</p>
+  </footer>
+
+</body>
+</html>
