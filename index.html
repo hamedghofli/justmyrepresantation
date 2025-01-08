@@ -1,104 +1,142 @@
 <!DOCTYPE html>
-<html>
+<html lang="en">
 <head>
-<style>
-body {
-  perspective: 1000px; /* Adjust for 3D depth */
-}
-
-.container {
-  position: relative;
-  width: 400px; /* Adjust width as needed */
-  height: 300px; /* Adjust height as needed */
-  margin: 50px auto;
-  transform-style: preserve-3d; /* Enable 3D transformations */
-}
-
-.slide {
-  position: absolute;
-  width: 100%;
-  height: 100%;
-  backface-visibility: hidden; /* Hide back of slides */
-  transition: transform 1s ease-in-out; /* Smooth transitions */
-}
-
-.slide:nth-child(1) {
-  transform: rotateY(0deg);
-}
-
-.slide:nth-child(2) {
-  transform: rotateY(-180deg);
-}
-
-.slide:nth-child(3) {
-  transform: rotateY(-360deg);
-}
-
-/* Add more slides and rotations as needed */
-
-.prev, .next {
-  position: absolute;
-  top: 50%;
-  transform: translateY(-50%);
-  padding: 10px 20px;
-  background-color: rgba(0, 0, 0, 0.5);
-  color: white;
-  border: none;
-  cursor: pointer;
-}
-
-.prev {
-  left: 20px;
-}
-
-.next {
-  right: 20px;
-}
-</style>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>3D Mesh Graph - Impress.js</title>
+  <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/impress.js/css/impress-demo.css">
+  <style>
+    body {
+      background: #faf2f2;
+      color: #fff;
+      font-family: Arial, sans-serif;
+    }
+    .mesh-node {
+      background: linear-gradient(135deg, #000000, #ff0000);
+      border-radius: 50%;
+      width: 600px; /* Increased width */
+      height: 600px; /* Increased height */
+      line-height: 300px; /* Match height for centering */
+      text-align: center;
+      font-weight: bold;
+      box-shadow: 0 0 20px rgba(0, 255, 200, 0.7);
+      display: flex;
+      align-items: center;
+      justify-content: center;
+    }
+    .mesh-node h2 {
+      font-size: 24px;
+      margin: 0;
+    }
+    .mesh-node p {
+      font-size: 16px;
+      margin: 0;
+    }
+    .zoom-out-button {
+      position: fixed;
+      top: 20px;
+      left: 50%;
+      transform: translateX(-50%);
+      background: #00ffcc;
+      color: #111;
+      border: none;
+      padding: 10px 20px;
+      font-size: 16px;
+      border-radius: 5px;
+      cursor: pointer;
+    }
+    .zoom-out-button:hover {
+      background: #1e90ff;
+    }
+  </style>
 </head>
-<body>
-
-<div class="container">
-  <div class="slide">
-    <h2>Slide 1</h2>
-    <p>Content for Slide 1</p>
+<body onclick="zoomOut()">
+  <button class="zoom-out-button" onclick="zoomOut()">Zoom Out</button>
+  <div id="impress">
+    <!-- Node 1 -->
+    <div id="node1" class="step mesh-node" data-x="0" data-y="0" data-z="0" style="width: 100px; height: 100px;">
+      <div>
+        <h2>Welcome</h2>
+        <p>This is Node 1 content.</p>
+      </div>
+    </div>
+    <!-- Node 2 -->
+    <div id="node2" class="step mesh-node" data-x="800" data-y="0" data-z="-200">
+      <div>
+        <h2>About Us</h2>
+        <p>This is Node 2 content.</p>
+      </div>
+    </div>
+    <!-- Node 3 -->
+    <div id="node3" class="step mesh-node" data-x="400" data-y="600" data-z="0" data-rotate-y="45">
+      <div>
+        <h2>Services</h2>
+        <p>This is Node 3 content.</p>
+      </div>
+    </div>
+    <!-- Node 4 -->
+    <div id="node4" class="step mesh-node" data-x="1000" data-y="600" data-z="300" data-rotate-x="45" data-rotate-z="90">
+      <div>
+        <h2>Portfolio</h2>
+        <p>This is Node 4 content.</p>
+      </div>
+    </div>
+    <!-- Node 5 -->
+    <div id="node5" class="step mesh-node" data-x="0" data-y="1000" data-z="-400" data-rotate-y="180">
+      <div>
+        <h2>Testimonials</h2>
+        <p>This is Node 5 content.</p>
+      </div>
+    </div>
+    <!-- Node 6 -->
+    <div id="node6" class="step mesh-node" data-x="1200" data-y="1000" data-z="0" data-rotate-x="90">
+      <div>
+        <h2>Team</h2>
+        <p>This is Node 6 content.</p>
+      </div>
+    </div>
+    <!-- Node 7 -->
+    <div id="node7" class="step mesh-node" data-x="-400" data-y="400" data-z="200" data-rotate-y="-90" data-rotate-x="45">
+      <div>
+        <h2>Careers</h2>
+        <p>This is Node 7 content.</p>
+      </div>
+    </div>
+    <!-- Node 8 -->
+    <div id="node8" class="step mesh-node" data-x="600" data-y="-300" data-z="-200" data-rotate-z="-45">
+      <div>
+        <h2>Contact</h2>
+        <p>This is Node 8 content.</p>
+      </div>
+    </div>
+    <!-- Node 9 -->
+    <div id="node9" class="step mesh-node" data-x="-800" data-y="-500" data-z="400" data-rotate-y="135">
+      <div>
+        <h2>FAQ</h2>
+        <p>This is Node 9 content.</p>
+      </div>
+    </div>
+    <!-- Node 10 -->
+    <div id="node10" class="step mesh-node" data-x="100" data-y="-800" data-z="100" data-rotate-x="-90" data-rotate-y="-135">
+      <div>
+        <h2>Closing</h2>
+        <p>This is Node 10 content.</p>
+      </div>
+    </div>
   </div>
-  <div class="slide">
-    <h2>Slide 2</h2>
-    <p>Content for Slide 2</p>
-  </div>
-  <div class="slide">
-    <h2>Slide 3</h2>
-    <p>Content for Slide 3</p>
-  </div>
-</div>
 
-<button class="prev">Previous</button>
-<button class="next">Next</button>
+  <script src="https://cdn.jsdelivr.net/npm/impress.js/js/impress.min.js"></script>
+  <script>
+    impress().init();
 
-<script>
-const container = document.querySelector('.container');
-const slides = document.querySelectorAll('.slide');
-const prevBtn = document.querySelector('.prev');
-const nextBtn = document.querySelector('.next');
-let currentSlide = 0;
+    function zoomOut() {
+      const impressElement = document.getElementById('impress');
+      impressElement.style.transform = 'scale(0.500)';
 
-nextBtn.addEventListener('click', () => {
-  currentSlide = (currentSlide + 1) % slides.length;
-  updateSlides();
-});
-
-prevBtn.addEventListener('click', () => {
-  currentSlide = (currentSlide - 1 + slides.length) % slides.length;
-  updateSlides();
-});
-
-function updateSlides() {
-  slides.forEach((slide, index) => {
-    slide.style.transform = `rotateY(${index - currentSlide} * 180deg)`;
-  });
-}
-</script>
-
+      setTimeout(() => {
+        impressElement.style.transform = '';
+      }, 1000);
+    }
+  </script>
 </body>
 </html>
