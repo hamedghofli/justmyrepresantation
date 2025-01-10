@@ -7,19 +7,19 @@
   <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/impress.js/css/impress-demo.css">
   <style>
     body {
-      background: #f8d1d1;
+      background: #ffdac5;
       color: #ffffff;
       font-family: Arial, sans-serif;
     }
     .mesh-node {
-      background: linear-gradient(-135deg, #000000, #005e61);
+      background: linear-gradient(-135deg, #000000, #0196ec);
       border-radius: 25%;
       width: 800px; /* Increased width */
       height: 800px; /* Increased height */
       line-height: 35px; /* Match height for centering */
       text-align: right;
       font-weight: bold;
-      box-shadow: 0 0 20px rgba(0, 255, 200, 0.7);
+      box-shadow: 0 0 20px rgba(31, 81, 245, 0.7);
       display: flex;
       align-items: center;
       justify-content: center;
@@ -68,7 +68,7 @@
    }
   </style>
 </head>
-<body  onclick="impress().next()">
+<body onclick="impress().next()">
   <div id="impress">
     <!-- Node 1 -->
     <div id="node1" class="step mesh-node" data-x="0" data-y="0" data-z="0">
@@ -178,7 +178,7 @@ migrate(
       </div>
     </div>
     <!-- Node 9 -->
-    <div id="node9" class="step mesh-node" data-x="800" data-y="2600" data-z="400" data-rotate-x="120" data-rotate-y="300" data-rotate-z="135">
+    <div id="node9" class="step mesh-node" data-x="1100" data-y="2600" data-z="400" data-rotate-x="120" data-rotate-y="300" data-rotate-z="135">
       <div>
         <h2>9: مقایسه Peewee با ORM‌های دیگر</h2>
         <br>
@@ -237,11 +237,11 @@ migrate(
 
     function zoomOut() {
       const impressElement = document.getElementById('impress');
-      impressElement.style.transform = 'scale(0.3)';
+      impressElement.style.transform = 'scale(0.1)';
 
       setTimeout(() => {
         impressElement.style.transform = '';
-      }, 3000);
+      }, 6000);
     }
   </script>
 </body>
