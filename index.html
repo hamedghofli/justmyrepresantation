@@ -3,21 +3,21 @@
 <head>
   <meta charset="UTF-8">
   <meta name="viewport" content="width=device-width, initial-scale=1.0">
-  <title>3D Mesh Graph - Impress.js</title>
+  <title>ORM Peewee</title>
   <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/impress.js/css/impress-demo.css">
   <style>
     body {
-      background: #faf2f2;
-      color: #fff;
+      background: #f8d1d1;
+      color: #ffffff;
       font-family: Arial, sans-serif;
     }
     .mesh-node {
-      background: linear-gradient(135deg, #000000, #ff0000);
-      border-radius: 50%;
-      width: 600px; /* Increased width */
-      height: 600px; /* Increased height */
-      line-height: 300px; /* Match height for centering */
-      text-align: center;
+      background: linear-gradient(-135deg, #000000, #005e61);
+      border-radius: 25%;
+      width: 800px; /* Increased width */
+      height: 800px; /* Increased height */
+      line-height: 35px; /* Match height for centering */
+      text-align: right;
       font-weight: bold;
       box-shadow: 0 0 20px rgba(0, 255, 200, 0.7);
       display: flex;
@@ -25,102 +25,208 @@
       justify-content: center;
     }
     .mesh-node h2 {
+      width: 600px; /* Increased width */
+
       font-size: 24px;
       margin: 0;
+      direction: rtl;
+    }
+    .mesh-node table {
+      width: 700px; /* Increased width */
+      text-align: center;  
+      font-size: 24px;
+      margin: 0;
+      direction: rtl;
+    }
+    .mesh-node th, td {
+    border: 2px solid #ccc; /* Thicker border for clarity */
+    padding: 10px;
     }
     .mesh-node p {
+      width: 600px; /* Increased width */
+
       font-size: 16px;
       margin: 0;
+      direction: rtl;
     }
-    .zoom-out-button {
-      position: fixed;
-      top: 20px;
-      left: 50%;
-      transform: translateX(-50%);
-      background: #00ffcc;
-      color: #111;
-      border: none;
-      padding: 10px 20px;
-      font-size: 16px;
-      border-radius: 5px;
-      cursor: pointer;
-    }
-    .zoom-out-button:hover {
-      background: #1e90ff;
-    }
+    .mesh-node pre {
+    width: 600px; /* Increased width */
+    color: #d8dee9; /* Light text */
+    padding: 15px;
+    border-radius: 8px;
+    line-height: 40px; /* Match height for centering */
+    font-size: 14px;
+    overflow-x: auto; /* Enable horizontal scrolling if needed */
+    font-family: "Courier New", Courier, monospace; /* Monospace font */
+    direction: ltr;
+    text-align: left;
+
+   }
+   .mesh-node code {
+    font-family: inherit; /* Keep the same font as <pre> */
+      
+   }
   </style>
 </head>
 <body onclick="zoomOut()">
-  <button class="zoom-out-button" onclick="zoomOut()">Zoom Out</button>
   <div id="impress">
     <!-- Node 1 -->
-    <div id="node1" class="step mesh-node" data-x="0" data-y="0" data-z="0" style="width: 100px; height: 100px;">
-      <div>
-        <h2>Welcome</h2>
-        <p>This is Node 1 content.</p>
+    <div id="node1" class="step mesh-node" data-x="0" data-y="0" data-z="0">
+      <div style="direction: rtl;">
+        <h2>1: مقدمه</h2>
+        <p>ORM (Object-Relational Mapping) به برنامه‌نویسان اجازه می‌دهد با پایگاه داده به‌صورت شیء‌گرا تعامل کنند.</p>
+        <p>Peewee یک ORM سبک و ساده برای Python است که برای کار با پایگاه داده‌های مختلف استفاده می‌شود.</p>
+
       </div>
     </div>
     <!-- Node 2 -->
-    <div id="node2" class="step mesh-node" data-x="800" data-y="0" data-z="-200">
+    <div id="node2" class="step mesh-node" data-x="-800" data-y="0" data-z="-100" data-rotate-y="25">
       <div>
-        <h2>About Us</h2>
-        <p>This is Node 2 content.</p>
+        <h2>2: مزایای استفاده از orm ها</h2>
+        <p>کاهش پیچیدگی در نوشتن کد SQL خام.</p>
+        <p>ارتباط مستقیم بین جداول پایگاه داده و مدل‌های برنامه.</p>
+        <p>نگهداری و توسعه آسان‌تر کد.</p>
+        <p>جلوگیری از مشکلات امنیتی مانند SQL Injection.</p>
       </div>
     </div>
     <!-- Node 3 -->
-    <div id="node3" class="step mesh-node" data-x="400" data-y="600" data-z="0" data-rotate-y="45">
+    <div id="node3" class="step mesh-node" data-x="-1600" data-y="100" data-z="100" data-rotate-y="25" data-rotate-z="0">
       <div>
-        <h2>Services</h2>
-        <p>This is Node 3 content.</p>
+        <h2>3: مزایای استفاده از Peewee</h2>
+        <p>سبک و سریع: مناسب برای پروژه‌های کوچک تا متوسط.</p>
+        <p>سادگی در یادگیری: مستندات خوب و پیاده‌سازی آسان.</p>
+        <p>پشتیبانی از پایگاه داده‌های : SQLite، MySQL، PostgreSQL و ...</p>
+        <p>امکانات کامل: پشتیبانی از Query Building، Migrations، Joins و ...</p>
       </div>
     </div>
     <!-- Node 4 -->
-    <div id="node4" class="step mesh-node" data-x="1000" data-y="600" data-z="300" data-rotate-x="45" data-rotate-z="90">
+    <div id="node4" class="step mesh-node" data-x="-2400" data-y="300" data-z="400" data-rotate-y="30" data-rotate-x="70" data-rotate-z="-50">
       <div>
-        <h2>Portfolio</h2>
-        <p>This is Node 4 content.</p>
+        <h2>4: نصب Peewee</h2>
+        <pre><code>
+pip install peewee
+        </pre></code>
       </div>
     </div>
     <!-- Node 5 -->
-    <div id="node5" class="step mesh-node" data-x="0" data-y="1000" data-z="-400" data-rotate-y="180">
+    <div id="node5" class="step mesh-node" data-x="-1800" data-y="900" data-z="-200" data-rotate-x="80" data-rotate-x="180" data-rotate-z="-30">
       <div>
-        <h2>Testimonials</h2>
-        <p>This is Node 5 content.</p>
+        <h2>5: تعریف یک مدل در Peewee</h2>
+        <pre><code>from peewee import *
+db = SqliteDatabase('example.db')
+class BaseModel(Model):
+class Meta:
+database = db
+
+class User(BaseModel):
+username = CharField(unique=True)
+email = CharField()
+age = IntegerField()
+              
+db.connect()
+db.create_tables([User])</pre></code>
       </div>
     </div>
     <!-- Node 6 -->
-    <div id="node6" class="step mesh-node" data-x="1200" data-y="1000" data-z="0" data-rotate-x="90">
+    <div id="node6" class="step mesh-node" data-x="-800" data-y="1400" data-z="0" data-rotate-x="90" data-rotate-y="210" data-rotate-z="0">
       <div>
-        <h2>Team</h2>
-        <p>This is Node 6 content.</p>
+        <h2>6: ایجاد و مدیریت رکوردها</h2>
+        <p>ایجاد رکورد:</p>
+        <pre><code>user = User.create(username='john_doe', email='john@example.com', age=30)</pre></code>
+        <p>بازیابی داده‌ها:</p>
+        <pre><code>users = User.select()
+for user in users:
+print(user.username, user.age)</pre></code>
+        <p>به‌روزرسانی رکورد:</p>
+        <pre><code>user = User.get(User.username == 'john_doe')
+user.age = 31
+user.save()</pre></code>
+        <p>حذف رکورد:</p>
+        <pre><code>user.delete_instance()</pre></code>
       </div>
     </div>
     <!-- Node 7 -->
-    <div id="node7" class="step mesh-node" data-x="-400" data-y="400" data-z="200" data-rotate-y="-90" data-rotate-x="45">
+    <div id="node7" class="step mesh-node" data-x="-400" data-y="1800" data-z="200" data-rotate-x="100" data-rotate-y="240" data-rotate-z="45">
       <div>
-        <h2>Careers</h2>
-        <p>This is Node 7 content.</p>
+        <h2> 7: استفاده از Queries پیچیده</h2>
+        <pre><code># فیلتر کردن کاربران با سن بیشتر از 25
+users = User.select().where(User.age > 25)
+
+# مرتب‌سازی کاربران بر اساس سن
+users = User.select().order_by(User.age.desc())
+
+# استفاده از Join
+class Blog(BaseModel):
+    title = CharField()
+    user = ForeignKeyField(User, backref='blogs')
+
+blogs = Blog.select().join(User).where(User.username == 'john_doe')</pre></code>
       </div>
     </div>
     <!-- Node 8 -->
-    <div id="node8" class="step mesh-node" data-x="600" data-y="-300" data-z="-200" data-rotate-z="-45">
+    <div id="node8" class="step mesh-node" data-x="0" data-y="2200" data-z="-300" data-rotate-x="110" data-rotate-y="270" data-rotate-z="-45">
       <div>
-        <h2>Contact</h2>
-        <p>This is Node 8 content.</p>
+        <h2>8: مدیریت Migration‌ها</h2>
+        <p>Peewee ابزار playhouse.migrate را برای مدیریت تغییرات پایگاه داده فراهم می‌کند.</p>
+        <pre><code>from playhouse.migrate import *
+
+migrator = SqliteMigrator(db)
+migrate(
+    migrator.add_column('user', 'birth_date', DateField(null=True)),
+    migrator.drop_column('user', 'age')
+)</pre></code>
       </div>
     </div>
     <!-- Node 9 -->
-    <div id="node9" class="step mesh-node" data-x="-800" data-y="-500" data-z="400" data-rotate-y="135">
+    <div id="node9" class="step mesh-node" data-x="800" data-y="2600" data-z="400" data-rotate-x="120" data-rotate-y="300" data-rotate-z="135">
       <div>
-        <h2>FAQ</h2>
-        <p>This is Node 9 content.</p>
+        <h2>9: مقایسه Peewee با ORM‌های دیگر</h2>
+        <br>
+        <table>
+          <thead>
+            <tr>
+              <th></th>
+              <th>Peewee</th>
+              <th>SQLAlchemy</th>
+              <th>Django ORM</th>
+            </tr>
+          </thead>
+          <tbody>
+            <tr>
+              <td>سبک و سریع</td>
+              <td>✅</td>
+              <td>❌</td>
+              <td>❌</td>
+            </tr>
+            <tr>
+              <td>یادگیری آسان</td>
+              <td>✅</td>
+              <td>متوسط</td>
+              <td>متوسط</td>
+            </tr>
+            <tr>
+              <td>انعطاف‌پذیری</td>
+              <td>متوسط</td>
+              <td>✅</td>
+              <td>محدود</td>
+            </tr>
+            <tr>
+              <td>Migration داخلی</td>
+              <td>✅ (نسبتاً)	</td>
+              <td>❌</td>
+              <td>✅</td>
+            </tr>
+          </tbody>
+        </table>
       </div>
     </div>
     <!-- Node 10 -->
-    <div id="node10" class="step mesh-node" data-x="100" data-y="-800" data-z="100" data-rotate-x="-90" data-rotate-y="-135">
+    <div id="node10" class="step mesh-node" data-x="1600" data-y="3000" data-z="100" data-rotate-x="130" data-rotate-y="330" data-rotate-z="-135">
       <div>
-        <h2>Closing</h2>
-        <p>This is Node 10 content.</p>
+        <h2>10: نتیجه‌گیری</h2>
+        <p>Peewee یک انتخاب مناسب برای پروژه‌هایی است که به یک ORM ساده و سریع نیاز دارند.</p>
+        <p>امکانات مناسب آن نیازهای عمومی در کار با پایگاه داده را برطرف می‌کند.</p>
+        <p>برای پروژه‌های بزرگ‌تر، ممکن است گزینه‌های پیچیده‌تر مناسب‌تر باشند.</p>
       </div>
     </div>
   </div>
@@ -131,11 +237,11 @@
 
     function zoomOut() {
       const impressElement = document.getElementById('impress');
-      impressElement.style.transform = 'scale(0.500)';
+      impressElement.style.transform = 'scale(0.1)';
 
       setTimeout(() => {
         impressElement.style.transform = '';
-      }, 1000);
+      }, 6000);
     }
   </script>
 </body>
