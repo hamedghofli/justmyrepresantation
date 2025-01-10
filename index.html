@@ -2,7 +2,7 @@
 <html lang="en">
 <head>
   <meta charset="UTF-8">
-  <meta name="viewport" content="width=device-width, initial-scale=0.3">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
   <title>ORM Peewee</title>
   <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/impress.js/css/impress-demo.css">
   <style>
@@ -237,11 +237,11 @@ migrate(
 
     function zoomOut() {
       const impressElement = document.getElementById('impress');
-      impressElement.style.transform = 'scale(0.1)';
+      impressElement.style.transform = 'scale(0.3)';
 
       setTimeout(() => {
-        impressElement.style.transform = 'scale(0.3)';
-      }, 6000);
+        impressElement.style.transform = '';
+      }, 3000);
     }
   </script>
 </body>
